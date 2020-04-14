@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private static readonly float GroundMargin = 0.01f;
     public static float DummyX = 0.0f;
@@ -42,5 +42,12 @@ public class MyScript : MonoBehaviour
         }
         
         body.velocity = new Vector2(hSpeed_, vSpeed_);
+    }
+    
+    // called when the cube hits the floor
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == Constants.DeathZoneTag)
+            Debug.Log("Player Death!!!!!!");
     }
 }
