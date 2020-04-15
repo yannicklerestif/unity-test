@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private Collider2D _collider2D;
 
+    public EventManager eventManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
     // called when the cube hits the floor
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == Constants.DeathZoneTag)
-            Debug.Log("Player Death!!!!!!");
+        if (col.CompareTag(Constants.DeathZoneTag))
+            eventManager.OnPlayerDied();
     }
 }
