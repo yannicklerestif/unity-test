@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        
+
         float vSpeed_ = body.velocity.y;
         float hSpeed_ = speed * h;
 
@@ -42,14 +42,19 @@ public class PlayerController : MonoBehaviour
         {
             vSpeed_ = v * vSpeed;
         }
-        
+
         body.velocity = new Vector2(hSpeed_, vSpeed_);
     }
-    
-    // called when the cube hits the floor
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag(Constants.DeathZoneTag))
+            eventManager.OnPlayerDied();
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag(Constants.MonsterTag))
             eventManager.OnPlayerDied();
     }
 }

@@ -5,17 +5,15 @@ using UnityEngine;
 public class GameOverPanelController : MonoBehaviour
 {
     public EventManager eventManager;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.GetKey(KeyCode.Space))
         {
             eventManager.OnRestartGame();
         }
